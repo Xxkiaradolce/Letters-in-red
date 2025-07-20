@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Letters in Red</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap');
+
+  :root {
+    --cherry-red: #b22234;
+    --soft-pink: #f7d1d9;
+    --pale-yellow: #f9f3b2;
+    --dark-charcoal: #2c2c2c;
+    --cream: #fff8f0;
+  }
+
+  body {
+    margin: 0; padding: 0;
+    background: var(--cream);
+    font-family: 'Playfair Display', serif;
+    color: var(--dark-charcoal);
+    display: flex; flex-direction: column; min-height: 100vh;
+  }
+
+  header {
+    background: var(--cherry-red);
+    color: var(--cream);
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    user-select: none;
+    box-shadow: 0 3px 10px rgba(178, 34, 52, 0.5);
+  }
+
+  header p {
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.6px;
+  }
+
+  main {
+    flex: 1;
+    max-width: 700px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--cherry-red);
+    border-bottom: 2px solid var(--cherry-red);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  /* Letter styling */
+  .letter {
+    background: var(--soft-pink);
+    border-left: 5px solid var(--cherry-red);
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 1.8rem;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px rgba(178, 34, 52, 0.15);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+
+  .letter-meta {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--cherry-red);
+  }
+
+  .color-tag {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* Form styling */
+  form {
+    background: var(--pale-yellow);
+    padding: 2rem 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 4px 4px 12px rgba(245, 204, 204, 0.5);
+    font-family: 'Playfair Display', serif;
+  }
+
+  label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 700;
+    color: var(--cherry-red);
+    margin-bottom: 0.4rem;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1.5px solid var(--cherry-red);
+    font-family: 'Playfair Display', serif;
+    resize: vertical;
+  }
+
+  textarea {
+    min-height: 90px;
+  }
+
+  .form-row {
+    margin-top: 1rem;
+  }
+
+  button {
+    margin-top: 1.6rem;
+    background: var(--cherry-red);
+    color: var(--cream);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Great Vibes', cursive;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #8b1a29;
+  }
+
+  /* Search bar */
+  #searchBar {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 30px;
+    border: 1.5px solid var(--cherry-red);
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem 1rem 2rem;
+    color: var(--cherry-red);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Audio player styles */
+  .audio-player {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: var(--soft-pink);
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 2px 6px rgba(178, 34, 52, 0.3);
+    font-family: 'Playfair Display', serif;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .audio-player button {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cherry-red);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  Letters in Red  
+  <p>To all those who didn't get to say goodbye or fucked and lost what they had.</p>
+</header>
+
+<main>
+  <section id="searchSection">
+    <input
+      id="searchBar"
+      type="text"
+      placeholder="Search a name..."
+      aria-label="Search letters by name"
+    />
+  </section>
+
+  <section id="lettersSection">
+    <h2>Unsent Letters</h2>
+    <!-- Letters inserted here dynamically -->
+  </section>
+
+  <section id="submitSection">
+    <h2>Submit a Letter</h2>
+    <form id="letterForm" autocomplete="off">
+      <label for="toName">To (Name):</label>
+      <input type="text" id="toName" name="toName" required maxlength="30" />
+
+      <label for="fromName">From (optional):</label>
+      <input type="text" id="fromName" name="fromName" maxlength="30" placeholder="Anonymous if left blank" />
+
+      <label for="colorTag">Mood Color:</label>
+      <select id="colorTag" name="colorTag" required>
+        <option value="🍒 cherry red">🍒 cherry red</option>
+        <option value="🩰 soft pink">🩰 soft pink</option>
+        <option value="🌼 pale yellow">🌼 pale yellow</option>
+        <option value="🖤 black">🖤 black</option>
+      </select>
+
+      <label for="message">Your Letter:</label>
+      <textarea id="message" name="message" required maxlength="1000" placeholder="Write your unsent letter here..."></textarea>
+
+      <div class="form-row">
+        <label><input type="checkbox" id="anonymousToggle" checked /> Submit anonymously</label>
+      </div>
+
+      <button type="submit">Send Letter</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Letters in Red | Made with ❤️ by Ki
+</footer>
+
+<div class="audio-player">
+  <button id="playPauseBtn" aria-label="Play/pause background music">▶️</button>
+  <span>Idea 22 - Gibran Alcocer</span>
+  <audio id="bgMusic" loop preload="auto" src="https://cdn.pixabay.com/download/audio/2021/12/10/audio_b4e9f6582e.mp3?filename=piano-idea-22-6073.mp3"></audio>
+</div>
+
+<script>
+  // Sample letters data
+  let letters = [
+    {
+      to: "Ziven",
+      from: "-anonymous",
+      colorTag: "🍒 cherry red",
+      message: `I felt the world falling apart the moment you left.  
+I wasn’t ready. I’m still not.  
+
+That night I didn’t just lose a friend. I lost the closest thing I had to a brother.  
+
+I fucked up real bad.  
+I regret every moment you were hurting and I didn’t see it.  
+I ran from it. Logged out. Disappeared. And you waited.  
+
+Thank you for your patience.  
+I love you.  
+I still do. Yes.  
+
+Take me back to the night we met.  
+4ever — 21/11/2024 ♡  
+N/A to your Z.`
+    },
+    {
+      to: "Ziven",
+      from: "-anonymous",
+      colorTag: "🍒 cherry red",
+      message: `HAIII.  
+If you’re seeing this… I hope you’re okay <3  
+
+I miss you *sosososo* much Ziven. I never stopped missing you. Not once.  
+
+I hate the distance I put between us — it wasn't fair.  
+I didn’t want to hurt you like that.  
+
+I should’ve listened.  
+And I’m sorry.`
+    }
+  ];
+
+  // References to DOM elements
+  const lettersSection = document.getElementById("lettersSection");
+  const searchBar = document.getElementById("searchBar");
+  const letterForm = document.getElementById("letterForm");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const bgMusic = document.getElementById("bgMusic");
+  const anonymousToggle = document.getElementById("anonymousToggle");
+
+  // Function to render letters (filtered by name if provided)
+  function renderLetters(filterName = "") {
+    const filtered = filterName
+      ? letters.filter(l => l.to.toLowerCase().includes(filterName.toLowerCase()))
+      : letters;
+
+    if (filtered.length === 0) {
+      lettersSection.innerHTML = `<h2>Unsent Letters</h2><p>No letters found for "${filterName}". Be the first to send one.</p>`;
+      return;
+    }
+
+    let html = `<h2>Unsent Letters</h2>`;
+    filtered.forEach(l => {
+      html += `
+      <article class="letter">
+        <div class="letter-meta"><strong>To:</strong> ${l.to}</div>
+        <div class="letter-meta"><strong>From:</strong> ${l.from || 'Anonymous'}</div>
+        <div class="color-tag">${l.colorTag}</div>
+        <p>${l.message.replace(/\n/g, "<br>")}</p>
+      </article>
+      `;
+    });
+
+    lettersSection.innerHTML = html;
+  }
+
+  // Initial render with all letters
+  renderLetters();
+
+  // Search letters by name
+  searchBar.addEventListener("input", () => {
+    renderLetters(searchBar.value.trim());
+  });
+
+  // Handle letter form submission
+  letterForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const toName = letterForm.toName.value.trim();
+    let fromName = letterForm.fromName.value.trim();
+    const colorTag = letterForm.colorTag.value;
+    const message = letterForm.message.value.trim();
+    const isAnonymous = anonymousToggle.checked;
+
+    if (!toName || !message || !colorTag) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (isAnonymous) fromName = "-anonymous";
+
+    letters.push({
+      to: toName,
+      from: fromName,
+      colorTag: colorTag,
+      message: message
+    });
+
+    renderLetters(searchBar.value.trim());
+    letterForm.reset();
+    anonymousToggle.checked = true;
+    alert("Your letter was sent. Thank you for sharing.");
+  });
+
+  // Play/pause background music
+  playPauseBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      playPauseBtn.textContent = "⏸️";
+    } else {
+      bgMusic.pause();
+      playPauseBtn.textContent = "▶️";
+    }
+  });
+
+  // Autoplay music muted by default (user can click to unmute)
+  bgMusic.volume = 0.3;
+  bgMusic.play().catch(() => {
+    playPauseBtn.textContent = "▶️";
+  });
+</script>
+
+</body>
+</html>
